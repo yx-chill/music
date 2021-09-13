@@ -68,7 +68,7 @@
                 @click.prevent="tab = 'login'"
                 :class="{
                   'hover:text-white text-white bg-blue-600': tab === 'login',
-                  'hover:text-blue-600': tab === 'register'
+                  'hover:text-blue-600': tab === 'register',
                 }"
               >
                 Login
@@ -81,14 +81,14 @@
                 @click.prevent="tab = 'register'"
                 :class="{
                   'hover:text-white text-white bg-blue-600': tab === 'register',
-                  'hover:text-blue-600': tab === 'login'
+                  'hover:text-blue-600': tab === 'login',
                 }"
                 >Register</a
               >
             </li>
           </ul>
 
-          <app-login-form  v-if="tab === 'login'" />
+          <app-login-form v-if="tab === 'login'" />
           <app-register-form v-else />
         </div>
       </div>
@@ -104,7 +104,8 @@ import AppRegisterForm from './RegisterForm.vue';
 export default {
   name: 'Auth',
   components: {
-    AppLoginForm, AppRegisterForm,
+    AppLoginForm,
+    AppRegisterForm,
   },
   data() {
     return {

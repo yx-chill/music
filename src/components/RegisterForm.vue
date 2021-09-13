@@ -191,8 +191,6 @@
 </template>
 
 <script>
-// import {createUserWithEmailAndPassword} from 'firebase/auth';
-// import {auth} from '@/includes/firebase';
 
 export default {
   name: 'RegisterForm',
@@ -202,7 +200,7 @@ export default {
         name: 'required|min:3|max:100|alpha_spaces',
         email: 'required|min:3|max:100|email',
         age: 'required|min_value:18|max_value:100',
-        password: 'required|min:3|max:32',
+        password: 'required|min:6|max:32',
         confirm_password: 'passwords_mismatch:@password',
         country: 'required|country_excluded:Antarctica',
         tos: 'tos',
@@ -217,28 +215,24 @@ export default {
     };
   },
   methods: {
-    // async
-    register(values) {
+    async register(values) {
       this.reg_show_alert = true;
       this.reg_in_submission = true;
       this.reg_alret_variant = 'bg-blue-500';
       this.reg_alert_msg = 'Please wait! Your account is being created.';
 
-      // let userCred = null;
-      // // try {
-      //   userCred = await createUserWithEmailAndPassword(
-      //     auth, values.email, values.password,
-      //   // );
-      // } catch (error) {
-      //   this.reg_in_submission = false;
-      //   this.reg_alret_variant = 'bg-red-500';
-      //   this.reg_alert_msg = 'An unexpected error occured. Please try again later.';
-      //   return;
-      // }
+      try {
+        await this.$store.dispatch('register', values);
+      } catch (error) {
+        this.reg_in_submission = false;
+        this.reg_alret_variant = 'bg-red-500';
+        this.reg_alert_msg = '1An unexpected error occured. Please try again later.';
+        console.log(error);
+        return;
+      }
 
-      //   this.reg_alret_variant = 'bg-green-500';
-      //   this.reg_alert_msg = 'Success! Your account has been created.';
-      console.log(values);
+      this.reg_alret_variant = 'bg-green-500';
+      this.reg_alert_msg = 'Success! Your account has been created.';
     },
   },
 };
