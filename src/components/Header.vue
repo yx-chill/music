@@ -20,7 +20,7 @@
               >About</router-link
             >
           </li>
-          <li>
+          <li v-if="!userLoggedIn">
             <a
               class="px-2 text-white"
               href="#"
@@ -29,18 +29,19 @@
               Login / Register
             </a>
           </li>
-          <li>
-            <router-link class="px-2 text-white" :to="{ name: 'manage' }"
-              >Manage</router-link
-            >
-          </li>
-          <li>
-            <router-link
-              class="pa-2 text-white"
-              :to="{ name: 'home' }"
-              >Logout</router-link
-            >
-          </li>
+          <template v-else>
+            <li>
+              <router-link class="px-2 text-white" :to="{ name: 'manage' }"
+                >Manage</router-link
+              >
+            </li>
+            <li>
+              <router-link class="pa-2 text-white" :to="{ name: 'home' }"
+              @click.prevent="signout"
+                >Logout</router-link
+              >
+            </li>
+          </template>
         </ul>
       </div>
     </nav>
@@ -48,12 +49,22 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapMutations, mapState, mapActions } from 'vuex';
 
 export default {
   name: 'Header',
+  computed: {
+    ...mapState(['userLoggedIn']),
+  },
   methods: {
     ...mapMutations(['toggleAuthModal']),
+
+    ...mapActions(['signout']),
+    // 兩個方法相同
+    // signout() {
+    //   this.$store.dispatch('signout');
+    // },
+
     // toggleAuthModal() {
     //   // this.$store.state.authModalShow = !this.$store.state.authModalShow;
     //   // console.log(this.$store.state.authModalShow);

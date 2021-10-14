@@ -122,7 +122,7 @@ export default {
       this.login_alert_msg = 'Success! You are now logged in.';
       localStorage.isLogin = true;
       this.$store.commit('toggleAuthModal');
-      console.log(values);
+      window.location.reload();
     },
   },
 };
