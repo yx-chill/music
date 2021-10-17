@@ -1,0 +1,15 @@
+{
+  "home": {
+    "listen": "聆聽美妙的音樂！"
+  },
+  "manage": {
+    "my_songs": "我的歌曲"
+  },
+  "register": {
+    "TOS": "",
+    "accept": ""
+  },
+  "song": {
+    "comment_count": "{count} 條留言"
+  }
+}
