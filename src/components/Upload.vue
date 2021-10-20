@@ -59,6 +59,17 @@ export default {
         if (file.type !== 'audio/mpeg') {
           return;
         }
+        if (!navigator.onLine) {
+          this.uploads.push({
+            task: {},
+            current_progress: 100,
+            name: file.name,
+            variant: 'bg-red-400',
+            icon: 'fas fa-times',
+            text_class: 'text-red-400',
+          });
+          return;
+        }
         const storageRef = storage.ref(); // music-e6823.appspot.com
         const songsRef = storageRef.child(`songs/${file.name}`); // music-e6823.appspot.com/songs/example.mp3
         const task = songsRef.put(file);
