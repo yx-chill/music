@@ -15,16 +15,12 @@
         <ul class="flex flex-row mt-1">
           <!-- Navigation Links -->
           <li>
-            <router-link class="px-2 text-white" :to="{ name: 'about' }"
-              >About</router-link
-            >
+            <router-link class="px-2 text-white" :to="{ name: 'about' }">
+              About</router-link>
           </li>
           <li v-if="!userLoggedIn">
-            <a
-              class="px-2 text-white"
-              href="#"
-              @click.prevent="toggleAuthModal"
-            >
+            <a class="px-2 text-white" href="#"
+              @click.prevent="toggleAuthModal">
               Login / Register
             </a>
           </li>
