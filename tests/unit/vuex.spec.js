@@ -34,6 +34,7 @@ describe('Vuex Store', () => {
     await store.dispatch('login', { email: '', password: '' });
     expect(store.state.auth.userLoggedIn).toBe(true);
   });
+
   test('playing returns trus if audio is playing', () => {
     const state = {
       sound: {
